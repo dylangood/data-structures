@@ -14,11 +14,17 @@ var Stack = function() {
 
 var stackMethods = {
   push: function(value){
-    this.storage[this.size] = value;
+    this.storage[this.numberStored] = value;
     this.numberStored++;
   },
   pop: function(){
-    //
+    if( this.numberStored === 0 ) {
+      return;
+    }
+    this.numberStored--;
+    var itemToPop = this.storage[this.numberStored];
+    delete this.storage[this.numberStored];
+    return itemToPop;
   },
   size: function(){
     return this.numberStored;
