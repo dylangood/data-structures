@@ -16,10 +16,17 @@ var Queue = function() {
 
 var queueMethods = {
   enqueue: function(value){
-
+    this.storage[this.tail] = value;
+    this.tail++;
   },
   dequeue: function(){
-    return aThing;
+    if ( this.head === this.tail ) {
+      return;
+    }
+    var itemDequeued = this.storage[this.head];
+    delete this.storage[this.head];
+    this.head++;
+    return itemDequeued;
   },
   size: function(){
     return this.tail - this.head;
