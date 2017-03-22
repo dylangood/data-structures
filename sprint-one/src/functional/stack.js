@@ -14,7 +14,7 @@ var Stack = function() {
     if(size === 0){
       return;
     }
-    var poppedItem = storage[size];
+    var poppedItem = storage[size - 1];
     delete storage[size];
     size--;
     return poppedItem;
