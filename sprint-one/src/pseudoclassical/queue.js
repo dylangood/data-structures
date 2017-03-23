@@ -8,7 +8,7 @@ Queue.prototype.enqueue = function(value) {
   this.storage[this.tail++] = value;
 };
 Queue.prototype.dequeue = function() {
-  if(this.head === this.tail) {
+  if (this.head === this.tail) {
     return;
   }
   var itemToDequeue = this.storage[this.head];
@@ -17,5 +17,4 @@ Queue.prototype.dequeue = function() {
 };
 Queue.prototype.size = function() {
   return this.tail - this.head;
-}
-//comment
+};
