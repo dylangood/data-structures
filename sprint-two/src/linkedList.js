@@ -16,7 +16,6 @@ var LinkedList = function() {
 
   list.removeHead = function() {
     var headValue = this.head.value;
-    console.log(this.head===this.tail);
     if ( this.tail === this.head ) {
       this.head = null;
       this.tail = null;
@@ -27,6 +26,14 @@ var LinkedList = function() {
   };
 
   list.contains = function(target) {
+    var pointer = this.head;
+    while ( pointer.value !== target ) {
+      if ( pointer.next === null ) {
+        return false;
+      }
+      pointer = pointer.next;
+    }
+    return true;
   };
 
   return list;
