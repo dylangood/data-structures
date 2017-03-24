@@ -2,14 +2,42 @@
 
 // Instantiate a new graph
 var Graph = function() {
+  // Create a Node class constructor
+  // var Node = function(value) {
+  //   var node = {};
+  //   // A node should have a value
+  //   // and an object full of edges
+  //   node.value = value;
+  //   node.edges = {};
+  //   return node;
+  // };
+  // Create a baseNode that is the starting point of the graph
+//  this.baseNode = undefined;
+  this.size = 0;
+  this.storage = {};
+    // ???    Profit!
 };
 
 // Add a node to the graph, passing in the node's value.
-Graph.prototype.addNode = function(node) {
+Graph.prototype.addNode = function(value) {
+  // Create a new node
+  //this.node.edge
+    // Give the node a value property
+  this.storage[this.size] = 0;
+  this.storage[this.size].value = value;
+    // Give the node an edge
+  this.storage[this.size++].edges={};
+      // If no connection provided, use baseNode
 };
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
-Graph.prototype.contains = function(node) {
+Graph.prototype.contains = function(value) {
+  for ( var k in this.storage ) {
+    if ( value === this.storage[k].value ) {
+      return true;
+    }
+  }
+  return false;
 };
 
 // Removes a node from the graph.
@@ -35,5 +63,3 @@ Graph.prototype.forEachNode = function(cb) {
 /*
  * Complexity: What is the time complexity of the above functions?
  */
-
-
