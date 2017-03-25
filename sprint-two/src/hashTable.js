@@ -6,45 +6,54 @@ var HashTable = function() {
   this._storage = LimitedArray(this._limit);
   for ( var i = 0; i < this._limit; i++ ) {
     this._storage.set(i, LimitedArray(this._bucketSize) );
-  };
+  }
 };
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   var tuple = [k, v];
   var bucket = this._storage.get(index);
-  console.log('before loop')
-  // We should do a retrieve first to make sure there's no dupe
-  for( var i = 0; i < this._bucketSize; i++ ) {
-    console.log(i, bucket.get(i))
-    if ( undefined === bucket.get(i) ) {
-      bucket.set(i, tuple);
-      return;
+  var foundAt = undefined;
+  var firstEmpty = undefined;
+
+  for ( var i = 0; i < this._bucketSize; i++ ) {
+    if ( undefined === foundAt &&
+         undefined !== bucket.get(i) &&
+         k === bucket.get(i)[0]         ) {
+      foundAt = i;
+    } else {
+      if ( undefined === firstEmpty && undefined === bucket.get(i) ) {
+        firstEmpty = i;
+      }
     }
+  }
+  if ( undefined !== foundAt ) {
+    bucket.set( foundAt, tuple );
+  } else {
+    bucket.set( firstEmpty, tuple );
   }
 };
 
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   var bucket = this._storage.get(index);
-  console.log(0);
-  for( var i = 0; i < this._bucketSize; i++ ) {
-    if( bucket.get(i)[0] === k ) {
+
+  for ( var i = 0; i < this._bucketSize; i++ ) {
+    if ( bucket.get(i) !== undefined && bucket.get(i)[0] === k ) {
       return bucket.get(i)[1];
     }
   }
-  // return bucket.each( function(value){
-  //   if( value && k === value[0] ) {
-  //     return value[1];
-  //   }
-  // });
-//  return this._storage.get(index).get(depthIndex);
 };
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  var depthIndex = getIndexBelowMaxForKey(k, this._bucketSize);
-  this._storage.get(index).set(depthIndex, undefined);
+  var bucket = this._storage.get(index);
+
+  for( var i = 0; i < this._bucketSize; i++ ) {
+    if ( bucket.get(i) !== undefined && bucket.get(i)[0] === k ) {
+      bucket.set(i, undefined);
+    }
+  }
 };
 
 
