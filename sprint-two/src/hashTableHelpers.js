@@ -56,4 +56,8 @@ var getIndexBelowMaxForKey = function(str, max) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ getIndexBelowMaxForKey: linear (of length of key string)
+ limitedArray.get: constant
+ limitedArray.set: constant
+ limitedArray.each: linear (of length of bucket arrays)
  */

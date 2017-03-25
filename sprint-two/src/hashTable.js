@@ -60,4 +60,7 @@ HashTable.prototype.remove = function(k) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ insert: linear (of the length of bucket arrays)
+ retrieve: linear (of the length of bucket arrays)
+ remove: linear (of the length of bucket arrays)
  */
