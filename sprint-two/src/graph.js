@@ -1,9 +1,8 @@
 
 
 // Instantiate a new graph
-var Graph = function(value) {
-  this.value = value;
-  this.edges = {};
+var Graph = function() {
+  this.storage = {};
 };
 
 // Add a node to the graph, passing in the node's value.
@@ -11,18 +10,14 @@ Graph.prototype.addNode = function(value) {
   // Create a new node
   // Give the node a value property
   var newNode = new Graph(value);
+  this.storage[value] = {};
       // Give the node edges
       // If no connection provided, use baseNode
 };
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
 Graph.prototype.contains = function(value) {
-  // for ( var k in this.storage ) {
-  //   if ( value === this.storage[k].value ) {
-  //     return true;
-  //   }
-  // }
-  // return false;
+  return !!this.storage[value];
 };
 
 // Removes a node from the graph.
