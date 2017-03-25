@@ -9,7 +9,23 @@ var BinarySearchTree = function(value) {
 BinarySearchTree.prototype = {
 
   insert: function(value) {
-
+    if ( value < this.value ) {
+      if ( this.left === undefined ) {
+        this.left = BinarySearchTree(value);
+      } else { //recurse left
+        this.left.insert(value);
+      }
+    }
+    if (value > this.value ) {
+      if ( this.right === undefined ) {
+        this.right = BinarySearchTree(value);
+      } else { //recurse right
+        this.right.insert(value);
+      }
+    }
+    if (value === this.value ) {
+      //go to hell
+    }
   },
   contains: function(value) {
     return; //someBoolean
