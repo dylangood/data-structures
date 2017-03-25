@@ -45,9 +45,15 @@ BinarySearchTree.prototype = {
         return this.right.contains(value);
       }
     }
-    //return false;
   },
   depthFirstLog: function(cb) {
+    cb(this.value);
+    if ( this.left !== undefined ) {
+      this.left.depthFirstLog(cb);
+    }
+    if ( this.right !== undefined ) {
+      this.right.depthFirstLog(cb);
+    }
   }
 };
 
