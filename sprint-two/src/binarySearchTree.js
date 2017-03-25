@@ -28,7 +28,24 @@ BinarySearchTree.prototype = {
     }
   },
   contains: function(value) {
-    return; //someBoolean
+    if( value === this.value ) {
+      return true;
+    }
+    if ( value < this.value ) {
+      if ( this.left === undefined ) {
+        return false;
+      } else {
+        return this.left.contains(value);
+      }
+    }
+    if ( value > this.value ) {
+      if ( this.right === undefined ) {
+        return false;
+      } else {
+        return this.right.contains(value);
+      }
+    }
+    //return false;
   },
   depthFirstLog: function(cb) {
   }
